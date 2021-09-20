@@ -118,6 +118,17 @@ export class DonationPage implements OnInit {
     this.donations_info.accessories_and_mobiles=this.accessories_and_mobiles_information.toString();
     this.donations_info.miscellaneous=this.miscellaneous_information.toString();
 
+    // to clear the form when the user back to the page
+    this.furniture_information = [];
+    this.clothes_information = [];
+    this.dishes_information = [];
+    this.electrical_tools_information = [];
+    this.baby_things_information = [];
+    this.luxuries_information = [];
+    this.medical_devices_information = [];
+    this.accessories_and_mobiles_information = [];
+    this.miscellaneous_information = [];
+    
     let data = {
       donations_info:this.donations_info
     }
