@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-grid class="grid1">
+  <ion-list>
+    <div>
+
+      <ion-item *ngFor="let ord of orders" (click)="presentModal($event, ord.order_number)" dir="rtl">
+
+          <ion-avatar slot="start">
+            <img
+              src="https://cdn.landesa.org/wp-content/uploads/default-user-image.png"
+            />
+          </ion-avatar>
+
+            <h2><a class="secondary">{{ ord.order_number }}</a></h2>
+      </ion-item>
+
+    </div>
+  </ion-list><br>
+  </ion-grid>
+</ion-content>

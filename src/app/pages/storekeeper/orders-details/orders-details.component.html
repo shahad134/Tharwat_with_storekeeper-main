@@ -1,0 +1,78 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div style="height: 40px"></div>
+    <div class="img-right" style="padding-bottom: 20px; text-align: center">
+      <img
+        class="img-right"
+        src="../../../../assets/tharwat1.png"
+        width="160mm"
+        height="80mm"
+      />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="grid1 row1">
+
+    <ion-row style="padding: 14px">
+      <ion-col class="content">
+
+        <ion-row>
+          <div style="width: 100%" class="center bold fheading" dir="rtl">
+            تفاصيل الطلب
+          </div>
+        </ion-row>
+
+        <!-- Checkboxes in a List -->
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item *ngFor="let f of arr" dir="rtl">
+                  <ion-label>{{ f.val }}</ion-label>
+                  <ion-checkbox slot="end" [(ngModel)]="f.isChecked"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item *ngFor="let d of driver" dir="rtl">
+                <ion-label> تاريخ  إنهاء الطلب </ion-label>
+                <ion-label> {{ d.finish_order_date }}  </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="pd5">
+      <ion-col style="text-align: center">
+        <ion-button
+          (click)="submit()"
+          type="button"
+          fill="solid"
+          class="accept">
+          انهاء
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="pd5">
+      <ion-col>
+        <ion-button
+          (click)="dismiss()"
+          class="ion-button"
+          expand="block"
+          color="white">
+          إغلاق
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,173 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div style="height: 40px"></div>
+    <div class="img-right" style="padding-bottom: 20px; text-align: center">
+      <img
+        class="img-right"
+        src="../../../../assets/tharwat1.png"
+        width="160mm"
+        height="80mm"
+      />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="grid1 row1">
+        
+    <ion-row style="padding: 14px">
+      <ion-col class="content">
+        <ion-row>
+          <div style="width: 100%" class="center bold fheading" dir="rtl">
+            تفاصيل الطلب
+          </div>
+        </ion-row>
+        <br/>
+
+        <div *ngFor="let don of donations_info" dir="rtl">
+        
+          <div *ngIf="don.furniture !== 'null' && don.furniture !== ''">
+            <ion-row>
+              <ion-col class="bold">أثاث</ion-col>
+              <ion-col>{{ don.furniture }}</ion-col>
+            </ion-row>
+          </div>
+
+          <div *ngIf="don.clothes !== 'null' && don.clothes !== ''">
+            <ion-row>
+              <ion-col class="bold">ملابس</ion-col>
+              <ion-col>{{ don.clothes }}</ion-col>
+            </ion-row>
+          </div>
+
+          <div *ngIf="don.dishes !== 'null' && don.dishes !== ''">
+            <ion-row>
+              <ion-col class="bold">الأواني المنزلية</ion-col>
+              <ion-col>{{ don.dishes }}</ion-col>
+            </ion-row>
+          </div>
+
+          <div *ngIf="don.electrical_tools !== 'null' && don.electrical_tools !== ''">
+            <ion-row>
+              <ion-col class="bold">الأدوات الكهربائية</ion-col>
+              <ion-col>{{ don.electrical_tools }}</ion-col>
+            </ion-row>
+          </div>
+
+          <div *ngIf="don.baby_things !== 'null' && don.baby_things !== ''">
+            <ion-row>
+              <ion-col class="bold">مستلزمات الأطفال</ion-col>
+              <ion-col>{{ don.baby_things }}</ion-col>
+            </ion-row>
+          </div>
+
+          <div *ngIf="don.luxuries !== 'null' && don.luxuries !== ''">
+            <ion-row>
+              <ion-col class="bold">كماليات</ion-col>
+              <ion-col>{{ don.luxuries }}</ion-col>
+            </ion-row>
+          </div>
+
+          <div *ngIf="don.accessories_and_mobiles !== 'null' && don.accessories_and_mobiles !== ''">
+            <ion-row>
+              <ion-col class="bold">إكسسوارات نسائية وجوالات</ion-col>
+              <ion-col>{{ don.accessories_and_mobiles }}</ion-col>
+            </ion-row>
+          </div>
+
+          <div *ngIf="don.medical_devices !== 'null' && don.medical_devices !== ''">
+            <ion-row>
+              <ion-col class="bold">أجهزة طبية</ion-col>
+              <ion-col>{{ don.medical_devices }}</ion-col>
+            </ion-row>
+          </div>
+
+          <div *ngIf="don.miscellaneous !== 'null' && don.miscellaneous !== ''">
+            <ion-row>
+              <ion-col class="bold">متفرقات</ion-col>
+              <ion-col>{{ don.miscellaneous }}</ion-col>
+            </ion-row>
+          </div>
+                  
+        </div>
+
+
+        <div *ngFor="let connect of connect_info" dir="rtl">
+          <div *ngIf="connect.name">
+
+            <ion-row>
+              <div style="width: 100%" class="center bold fheading" dir="rtl">
+                تفاصيل المتبرع
+              </div>
+            </ion-row>
+            <br>
+
+            
+            <ion-row>
+              <ion-col class="bold">الاسم</ion-col>
+              <ion-col>{{ connect.name }}</ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col class="bold">رقم الجوال</ion-col>
+              <ion-col>{{ connect.numberphone }}</ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col class="bold">تاريخ الاستلام</ion-col>
+              <ion-col>{{ connect.birth_date }}</ion-col>
+            </ion-row>
+            
+            <ion-row>
+              <ion-col class="bold">وقت الاستلام</ion-col>
+              <ion-col>{{ connect.time }}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="bold"> الحي</ion-col>
+              <ion-col>{{ connect.neighborhood_name }}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="bold">رقم البيت</ion-col>
+              <ion-col>{{ connect.house_number }}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="bold">اسم الشارع</ion-col>
+              <ion-col>{{ connect.street_name }}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="bold">أقرب معلم</ion-col>
+              <ion-col>{{ connect.nearest_landmark }}</ion-col>
+            </ion-row>
+
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col style="text-align: center">
+        <ion-button
+          (click)="submit()"
+          type="button"
+          fill="solid"
+          class="accept">
+          قبول
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="pd5">
+      <ion-col>
+        <ion-button
+          (click)="dismiss()"
+          class="ion-button"
+          expand="block"
+          color="white">
+          إغلاق
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
