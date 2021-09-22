@@ -111,8 +111,11 @@ export class InfoConnectPage implements OnInit {
 
 
   info_connect: Connect_info = new Connect_info ;
-
-  donations_info:Donations_info[];
+  // donations_info:Donations_info[];
+  user_info: Connect_info;
+  putData = false;
+  hideButton = true;
+  nullValue = true;
 
   constructor(
     private alertService: AlertService,
@@ -144,7 +147,6 @@ export class InfoConnectPage implements OnInit {
   }
 
   onSubmit(){
-    // this.info_connect.birth_date = moment(this.info_connect.birth_date).format("YYYY-MM-DD")
     this.info_connect.name = this.addmore.get('name').value
     this.info_connect.numberphone = this.addmore.get('numberphone').value
     this.info_connect.birth_date = moment(this.addmore.get('birth_date').value).format("YYYY-MM-DD");
@@ -156,9 +158,7 @@ export class InfoConnectPage implements OnInit {
     this.info_connect.street_name = this.addmore.get('street_name').value
     this.info_connect.house_number = this.addmore.get('house_number').value
     this.info_connect.nearest_landmark = this.addmore.get('nearest_landmark').value
-    //shahad
 
-    //info_connect.order_number
     let data = {
       info_connect:this.info_connect
     }
@@ -178,16 +178,75 @@ export class InfoConnectPage implements OnInit {
     )
   }
 
-  ionViewWillEnter(){
-    this.httpService.makeGet('auth/receive_new_orders').subscribe(
-      donations_info => {
-       this.donations_info = donations_info;
-       console.log('before');
-       for(let i=0; i <= donations_info.length; i++){
-        console.log('info connect');
-        console.log(donations_info[i]);
-        }      
+  onSubmitSave(){
+    // to fill the form if the user have pevious data
+    this.info_connect.name = this.addmore.get('name').value
+    this.info_connect.numberphone = this.addmore.get('numberphone').value
+    this.info_connect.birth_date = moment(this.addmore.get('birth_date').value).format("YYYY-MM-DD");
+    this.info_connect.time = this.addmore.get('time').value
+    this.info_connect.neighborhood_name = this.addmore.get('neighborhood_name').value
+    this.info_connect.street_name = this.addmore.get('street_name').value
+    this.info_connect.house_number = this.addmore.get('house_number').value
+    this.info_connect.nearest_landmark = this.addmore.get('nearest_landmark').value
+
+    let data = {
+      info_connect:this.info_connect
+    }
+    console.log(data)
+    
+    this.httpService.post('auth/infoconnects', data).subscribe(
+      data => {
+        this.alertService.presentToast("تم حفظ البيانات بنجاح");
+      },
+      error => {
+        console.log(error.error);
+      },
+      () => {
+        this.modalController.dismiss();
+        this.navCtrl.navigateForward('/home');
       }
     )
-  }  
+  }
+  
+  ionViewWillEnter(){
+    this.httpService.makeGet('auth/display').subscribe(
+      user_info => {
+        this.user_info = user_info;
+        console.log('user: ', user_info);
+      },
+      error => {
+        console.log(error.error);
+      },
+      () => {
+        // If the user not have previous data
+        if (Array.isArray(this.user_info) && this.user_info.length==0) {
+          this.nullValue = true;
+        }
+        else{
+          this.nullValue = false;
+        }
+      }
+    )
+  }
+  
+    show(){
+    // Set the user values who is has a previous address
+    this.hideButton = false;
+
+    let name = this.user_info[0].name;
+    let numberphone = this.user_info[0].numberphone;
+    let neighborhood = this.user_info[0].neighborhood_name;
+    let street_name = this.user_info[0].street_name;
+    let house_number = this.user_info[0].house_number;
+    let nearest_landmark = this.user_info[0].nearest_landmark;
+
+    this.addmore.controls.name.setValue(name);
+    this.addmore.controls.numberphone.setValue(numberphone);
+    this.addmore.controls.neighborhood_name.setValue(neighborhood);
+    this.addmore.controls.street_name.setValue(street_name);
+    this.addmore.controls.house_number.setValue(house_number);
+    this.addmore.controls.nearest_landmark.setValue(nearest_landmark);
+
+    this.putData = true;
+  }
 }
