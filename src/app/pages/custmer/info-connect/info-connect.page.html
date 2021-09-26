@@ -27,7 +27,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-input formControlName='numberphone'  placeholder="رقم جوال المتبرع"></ion-input>
+        <ion-input formControlName='numberphone'  placeholder="رقم جوال المتبرع" pattern="05[0-9]*"></ion-input>
         <p *ngIf="addmore.controls['numberphone'].errors && addmore.controls['numberphone'].dirty">أدخل رقم جوال صحيح</p>
       </ion-item>
 
